@@ -1,7 +1,7 @@
 require 'CSV'
 
 namespace :data do
-  desc "Import models in our DB."
+  desc "Import models into our DB."
   #The task is meant to be run after the database has been dropped and recreated
   task :import => :environment do
     # Import Customers

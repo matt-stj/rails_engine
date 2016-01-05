@@ -25,8 +25,7 @@ ActiveRecord::Schema.define(version: 20160104232706) do
 
   create_table "invoice_items", force: :cascade do |t|
     t.integer  "item_id"
-    t.string   "invoice_id"
-    t.string   "integer"
+    t.integer  "invoice_id"
     t.integer  "quantity"
     t.integer  "unit_price"
     t.datetime "created_at", null: false
