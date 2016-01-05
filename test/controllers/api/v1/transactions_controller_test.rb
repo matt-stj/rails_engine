@@ -33,4 +33,47 @@ class Api::V1::TransactionsControllerTest < ActionController::TestCase
    assert_equal "1234567", JSON.parse(response.body)['credit_card_number']
    assert_equal "success", JSON.parse(response.body)['result']
   end
+
+  test "should get single record for find:id" do
+   transaction =  Transaction.create( invoice_id: 1,
+                    credit_card_number: "1234567",
+                    result: "success"
+                  )
+
+   get :find,  :format => :json, id: transaction.id
+
+   assert_response :success
+   assert_equal 1, JSON.parse(response.body)['invoice_id']
+   assert_equal "1234567", JSON.parse(response.body)['credit_card_number']
+   assert_equal "success", JSON.parse(response.body)['result']
+  end
+
+  test "should get single record for find:credit_card_number" do
+   transaction =  Transaction.create( invoice_id: 1,
+                    credit_card_number: "1234567",
+                    result: "success"
+                  )
+
+   get :find,  :format => :json, credit_card_number: "1234567"
+
+   assert_response :success
+   assert_equal 1, JSON.parse(response.body)['invoice_id']
+   assert_equal "1234567", JSON.parse(response.body)['credit_card_number']
+   assert_equal "success", JSON.parse(response.body)['result']
+  end
+
+  test "should get single record (case-insensitive) for find:result" do
+   transaction =  Transaction.create( invoice_id: 1,
+                    credit_card_number: "1234567",
+                    result: "success"
+                  )
+
+   get :find,  :format => :json, result: "success"
+
+   assert_response :success
+   assert_equal 1, JSON.parse(response.body)['invoice_id']
+   assert_equal "1234567", JSON.parse(response.body)['credit_card_number']
+   assert_equal "success", JSON.parse(response.body)['result']
+  end
+
 end
