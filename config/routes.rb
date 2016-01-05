@@ -4,6 +4,8 @@ Rails.application.routes.draw do
       resources :customers, only: [:index, :show ], defaults: {format: :json} do
          collection do
            get 'find'
+           get 'find_all'
+           get 'random'
          end
        end
 
@@ -11,6 +13,7 @@ Rails.application.routes.draw do
         collection do
           get 'find'
           get 'find_all'
+          get 'random'
         end
       end
 
@@ -18,6 +21,7 @@ Rails.application.routes.draw do
         collection do
           get 'find'
           get 'find_all'
+          get 'random'
         end
       end
 
@@ -25,6 +29,7 @@ Rails.application.routes.draw do
         collection do
           get 'find'
           get 'find_all'
+          get 'random'
         end
       end
 
@@ -32,6 +37,7 @@ Rails.application.routes.draw do
         collection do
           get 'find'
           get 'find_all'
+          get 'random'
         end
       end
 
@@ -39,6 +45,7 @@ Rails.application.routes.draw do
         collection do
           get 'find'
           get 'find_all'
+          get 'random'
         end
       end
 

@@ -40,4 +40,14 @@ class Api::V1::MerchantsControllerTest < ActionController::TestCase
 
      assert_equal "Turing", JSON.parse(response.body)["name"]
     end
+
+    test "can return a random record" do
+      Merchant.create(name: "Turing1")
+      Merchant.create(name: "Turing2")
+      Merchant.create(name: "Turing3")
+
+      get :random,  :format => :json
+
+      assert_response :success
+     end
 end

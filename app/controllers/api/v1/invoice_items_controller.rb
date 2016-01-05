@@ -16,4 +16,9 @@ class Api::V1::InvoiceItemsController < ApplicationController
   def find_all
     respond_with InvoiceItem.where("#{params.first.first}": params.first.last)
   end
+
+  def random
+    offset = rand(InvoiceItem.count)
+    respond_with  InvoiceItem.offset(offset).first
+  end
 end

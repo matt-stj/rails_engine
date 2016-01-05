@@ -25,4 +25,9 @@ class Api::V1::InvoicesController < ApplicationController
     end
   end
 
+  def random
+    offset = rand(Invoice.count)
+    respond_with  Invoice.offset(offset).first
+  end
+
 end

@@ -24,4 +24,9 @@ class Api::V1::ItemsController < ApplicationController
         respond_with Item.where("#{params.first.first}": params.first.last)
       end
     end
+
+    def random
+      offset = rand(Item.count)
+      respond_with  Item.offset(offset).first
+    end
 end

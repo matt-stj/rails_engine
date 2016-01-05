@@ -25,4 +25,9 @@ class Api::V1::CustomersController < ApplicationController
     end
   end
 
+  def random
+    offset = rand(Customer.count)
+    respond_with  Customer.offset(offset).first
+  end
+
 end

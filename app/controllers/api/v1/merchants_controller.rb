@@ -25,4 +25,9 @@ class Api::V1::MerchantsController < ApplicationController
       end
     end
 
+    def random
+      offset = rand(Merchant.count)
+      respond_with  Merchant.offset(offset).first
+    end
+
 end
