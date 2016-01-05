@@ -17,4 +17,12 @@ class Api::V1::TransactionsController < ApplicationController
       end
     end
 
+    def find_all
+      if params['result']
+        respond_with Transaction.where("#{params.first.first} ILIKE ?", params.first.last)
+      else
+        respond_with Transaction.where("#{params.first.first}": params.first.last)
+      end
+    end
+
 end

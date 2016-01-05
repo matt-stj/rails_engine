@@ -17,4 +17,12 @@ class Api::V1::MerchantsController < ApplicationController
       end
     end
 
+    def find_all
+      if params["name"]
+        respond_with Merchant.where("#{params.first.first} ILIKE ?", params.first.last)
+      else
+        respond_with Merchant.where("#{params.first.first}": params.first.last)
+      end
+    end
+
 end
