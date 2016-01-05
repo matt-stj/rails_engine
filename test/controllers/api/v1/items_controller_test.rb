@@ -1,104 +1,121 @@
 require 'test_helper'
 
 class Api::V1::ItemsControllerTest < ActionController::TestCase
-  test "should get items index" do
-     get :index,  :format => :json
-     assert_response :success
+  attr_reader :item
 
-     assert_equal "[]", response.body
+  def setup
+     5.times do |i|
+       Item.create( name: "I-pod - #{i}",
+                    description: "A nice thing that plays your music. - #{i}",
+                    unit_price: 10000,
+                    merchant_id: 4
+              )
+        @item = Item.first
+     end
+  end
 
-     Item.create( name: "I-pod",
-                  description: "A nice thing that plays your music.",
-                  unit_price: 10000,
-                  merchant_id: 4
-            )
 
-     get :index,  :format => :json
 
-     assert_response :success
-     assert_equal "I-pod", JSON.parse(response.body).first['name']
-     assert_equal "A nice thing that plays your music.", JSON.parse(response.body).first['description']
-     assert_equal 10000, JSON.parse(response.body).first['unit_price']
-     assert_equal 4, JSON.parse(response.body).first['merchant_id']
-   end
+  test "#index responds to json" do
+    get :index, format: :json
+    assert_response :success
+  end
 
-   test "should get individual item with find:id" do
-    item = Item.create( name: "I-pod",
-                 description: "A nice thing that plays your music.",
-                 unit_price: 10000,
-                 merchant_id: 4
-           )
+  test "#index returns an array of records" do
+    get :index, format: :json
+
+    assert_kind_of Array, json_response
+  end
+
+  test "#index returns the correct number of items" do
+    get :index, format: :json
+
+    assert_equal Item.count, json_response.count
+  end
+
+  test "#index contains items that have the correct properties" do
+    get :index, format: :json
+
+    json_response.each do |item|
+      assert item["name"]
+      assert item["description"]
+    end
+  end
+
+  test "#show responds to json" do
+    get :show, format: :json, id: item.id
+
+    assert_response :success
+  end
+
+  test "#show returns a hash of a single record" do
+    get :show, format: :json, id: item.id
+
+    assert_kind_of Hash, json_response
+  end
+
+  test "#show contains an item with the correct properties" do
+    get :show, format: :json, id: item.id
+
+    assert json_response["name"]
+    assert json_response["description"]
+  end
+  
+  test "should get individual item with find:id" do
 
     get :find,  :format => :json, id: item.id
 
     assert_response :success
-    assert_equal "I-pod", JSON.parse(response.body)['name']
-    assert_equal "A nice thing that plays your music.", JSON.parse(response.body)['description']
-    assert_equal 10000, JSON.parse(response.body)['unit_price']
-    assert_equal 4, JSON.parse(response.body)['merchant_id']
+    assert_equal "I-pod - 0", json_response['name']
+    assert_equal "A nice thing that plays your music. - 0", json_response['description']
+    assert_equal 10000, json_response['unit_price']
+    assert_equal 4, json_response['merchant_id']
   end
 
   test "should get individual item (case-insensitive) with find:name" do
-   item = Item.create( name: "I-pod",
-                description: "A nice thing that plays your music.",
-                unit_price: 10000,
-                merchant_id: 4
-          )
 
-   get :find,  :format => :json, name: "i-POD"
+    get :find,  :format => :json, name: "i-POD - 0"
 
-   assert_response :success
-   assert_equal "I-pod", JSON.parse(response.body)['name']
-   assert_equal "A nice thing that plays your music.", JSON.parse(response.body)['description']
-   assert_equal 10000, JSON.parse(response.body)['unit_price']
-   assert_equal 4, JSON.parse(response.body)['merchant_id']
- end
+    assert_response :success
+    assert_equal "I-pod - 0", json_response['name']
+    assert_equal "A nice thing that plays your music. - 0", json_response['description']
+    assert_equal 10000, json_response['unit_price']
+    assert_equal 4, json_response['merchant_id']
+  end
 
   test "should get individual item (case-insensitive) with find:description" do
     item = Item.create( name: "I-pod",
-                 description: "A nice thing that plays your music.",
-                 unit_price: 10000,
-                 merchant_id: 4
-           )
+    description: "A nice thing that plays your music.",
+    unit_price: 10000,
+    merchant_id: 4
+    )
 
     get :find,  :format => :json, description: "A niCe thIng That Plays your MusiC."
 
     assert_response :success
-    assert_equal "I-pod", JSON.parse(response.body)['name']
-    assert_equal "A nice thing that plays your music.", JSON.parse(response.body)['description']
-    assert_equal 10000, JSON.parse(response.body)['unit_price']
-    assert_equal 4, JSON.parse(response.body)['merchant_id']
+    assert_equal "I-pod", json_response['name']
+    assert_equal "A nice thing that plays your music.", json_response['description']
+    assert_equal 10000, json_response['unit_price']
+    assert_equal 4, json_response['merchant_id']
   end
 
   test "should get individual item with find:unit_price" do
-    item = Item.create( name: "I-pod",
-                 description: "A nice thing that plays your music.",
-                 unit_price: 10000,
-                 merchant_id: 4
-           )
-
     get :find, :format => :json, unit_price: 10000
 
     assert_response :success
-    assert_equal "I-pod", JSON.parse(response.body)['name']
-    assert_equal "A nice thing that plays your music.", JSON.parse(response.body)['description']
-    assert_equal 10000, JSON.parse(response.body)['unit_price']
-    assert_equal 4, JSON.parse(response.body)['merchant_id']
+    assert_equal "I-pod - 0", json_response['name']
+    assert_equal "A nice thing that plays your music. - 0", json_response['description']
+    assert_equal 10000, json_response['unit_price']
+    assert_equal 4, json_response['merchant_id']
   end
 
   test "should get individual item with find:merchant_id" do
-    item = Item.create( name: "I-pod",
-                 description: "A nice thing that plays your music.",
-                 unit_price: 10000,
-                 merchant_id: 4
-           )
-
     get :find, :format => :json, merchant_id: 4
 
     assert_response :success
-    assert_equal "I-pod", JSON.parse(response.body)['name']
-    assert_equal "A nice thing that plays your music.", JSON.parse(response.body)['description']
-    assert_equal 10000, JSON.parse(response.body)['unit_price']
-    assert_equal 4, JSON.parse(response.body)['merchant_id']
+    assert_equal "I-pod - 0", json_response['name']
+    assert_equal "A nice thing that plays your music. - 0", json_response['description']
+    assert_equal 10000, json_response['unit_price']
+    assert_equal 4, json_response['merchant_id']
   end
 end
