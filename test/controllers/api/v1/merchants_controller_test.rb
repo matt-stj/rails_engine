@@ -23,4 +23,21 @@ class Api::V1::MerchantsControllerTest < ActionController::TestCase
 
    assert_equal "Turing", JSON.parse(response.body)["name"]
   end
+
+  test "should get single record from find:id" do
+    merchant = Merchant.create(name: "Turing")
+    get :find,  :format => :json, id: merchant.id
+
+    assert_response :success
+    assert_equal "Turing", JSON.parse(response.body)["name"]
+   end
+
+   test "should get single record (case insensitive) from find:name" do
+     merchant = Merchant.create(name: "Turing")
+     get :find,  :format => :json, name: "TURING"
+
+     assert_response :success
+
+     assert_equal "Turing", JSON.parse(response.body)["name"]
+    end
 end
