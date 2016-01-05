@@ -51,17 +51,4 @@ class Api::V1::MerchantsControllerTest < ActionController::TestCase
       assert_response :success
      end
 
-     test "can return items for a given Merchant" do
-      merchant =  Merchant.create(name: "Turing1")
-      item = merchant.items.create(name: "I-pod",
-                     description: "A nice thing that plays your music.",
-                     unit_price: 10000,
-                     merchant_id: 4
-               )
-
-       get :items,  :format => :json, id: merchant.id
-
-       assert_response :success
-       assert_equal item.id, json_response.first['id']
-      end
 end
