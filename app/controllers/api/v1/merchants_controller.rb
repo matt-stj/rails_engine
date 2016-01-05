@@ -30,4 +30,8 @@ class Api::V1::MerchantsController < ApplicationController
       respond_with  Merchant.offset(offset).first
     end
 
+    def items
+      respond_with Merchant.find_by(id: params[:id]).items
+    end
+
 end

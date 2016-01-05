@@ -1,4 +1,5 @@
 class InvoiceItem < ActiveRecord::Base
+  default_scope -> { order('id DESC') }
   before_create :convert_cents
 
   def convert_cents
