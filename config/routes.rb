@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
       resources :merchants, only: [:index, :show], defaults: { format: :json } do
         resources :items, module: "merchants", only: [:index]
+        resources :invoices, module: "merchants", only: [:index]
+
         collection do
           get 'find'
           get 'find_all'

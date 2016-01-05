@@ -11,10 +11,10 @@ class Api::V1::CustomersControllerTest < ActionController::TestCase
 
   test "should get customers index" do
   get :index,  :format => :json
-  
+
    assert_response :success
-   assert_equal "Matt0", JSON.parse(response.body).first['first_name']
-   assert_equal "Smith0", JSON.parse(response.body).first['last_name']
+   assert_equal "Matt4", JSON.parse(response.body).first['first_name']
+   assert_equal "Smith4", JSON.parse(response.body).first['last_name']
  end
 
  test "should get customers show page" do
