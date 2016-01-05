@@ -17,12 +17,12 @@ class Api::V1::CustomersControllerTest < ActionController::TestCase
  end
 
  test "should get customers show page" do
-  customer = Customer.create(first_name: "Matt", last_name: "Smith")
+    customer = Customer.create(first_name: "Matt", last_name: "Smith")
 
-  get :show,  :format => :json, id: customer.id
+    get :show,  :format => :json, id: customer.id
 
-  assert_response :success
-  assert_equal "Matt", JSON.parse(response.body)['first_name']
-  assert_equal "Smith", JSON.parse(response.body)['last_name']
-end
+    assert_response :success
+    assert_equal "Matt", JSON.parse(response.body)['first_name']
+    assert_equal "Smith", JSON.parse(response.body)['last_name']
+  end
 end
