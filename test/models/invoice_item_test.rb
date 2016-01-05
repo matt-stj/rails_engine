@@ -1,7 +1,37 @@
 require 'test_helper'
 
 class InvoiceItemTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "An Invoice Item has proper attributes" do
+    invoice_item = InvoiceItem.new(
+                                    item_id: 1,
+                                    invoice_id: 2,
+                                    quantity: 5,
+                                    unit_price: 3
+    )
+
+    assert_equal 1, invoice_item.item_id
+    assert_equal 2, invoice_item.invoice_id
+    assert_equal 5, invoice_item.quantity
+    assert_equal 3, invoice_item.unit_price
+  end
+
+  test "An Invoice Item belongs to an item" do
+    skip
+    invoice_item = InvoiceItem.new(
+                                    item_id: 1,
+                                    invoice_id: 1,
+                                    quantity: 5,
+                                    unit_price: 3
+    )
+  end
+
+  test "An Invoice Item belongs to an invoice" do
+    skip
+    invoice_item = InvoiceItem.new(
+                                    item_id: 1,
+                                    invoice_id: 1,
+                                    quantity: 5,
+                                    unit_price: 3
+    )
+  end
 end
