@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       resources :customers, only: [:index, :show ], defaults: {format: :json} do
         resources :invoices, module: "customers", only: [:index]
         resources :transactions, module: "customers", only: [:index]
+        resource :favorite_merchant, module: "customers", only: [:show]
 
          collection do
            get 'find'
@@ -19,6 +20,7 @@ Rails.application.routes.draw do
 
         #Business Logic Single Merchant
         resource :revenue, module: "merchants", only: [:show]
+        resource :favorite_customer, module: "merchants", only: [:show]
         resources :customers_with_pending_invoices, module: "merchants", only: [:index]
 
         collection do
@@ -43,6 +45,7 @@ Rails.application.routes.draw do
       resources :items, only: [:index, :show], defaults: { format: :json } do
         resources :invoice_items, module: "items", only: [:index]
         resource :merchant, module: "items", only: [:show]
+        resource :best_day, module: "items", only: [:show]
 
         collection do
           get 'find'
