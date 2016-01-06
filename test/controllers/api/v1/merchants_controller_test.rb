@@ -41,6 +41,15 @@ class Api::V1::MerchantsControllerTest < ActionController::TestCase
      assert_equal "Turing", JSON.parse(response.body)["name"]
     end
 
+    test "#find_all should get all records that match the query" do
+      merchant = Merchant.create(name: "Turing")
+      get :find,  :format => :json, name: "TURING"
+
+      assert_response :success
+
+      assert_equal "Turing", JSON.parse(response.body)["name"]
+     end
+
     test "can return a random record" do
       Merchant.create(name: "Turing1")
       Merchant.create(name: "Turing2")
