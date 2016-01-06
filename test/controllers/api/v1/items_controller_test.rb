@@ -68,7 +68,7 @@ class Api::V1::ItemsControllerTest < ActionController::TestCase
     assert_response :success
     assert_equal "I-pod - 4", json_response['name']
     assert_equal "A nice thing that plays your music. - 4", json_response['description']
-    assert_equal 10000, json_response['unit_price']
+    assert_equal "10000.0", json_response['unit_price']
     assert_equal 4, json_response['merchant_id']
   end
 
@@ -79,14 +79,14 @@ class Api::V1::ItemsControllerTest < ActionController::TestCase
     assert_response :success
     assert_equal "I-pod - 4", json_response['name']
     assert_equal "A nice thing that plays your music. - 4", json_response['description']
-    assert_equal 10000, json_response['unit_price']
+    assert_equal "10000.0", json_response['unit_price']
     assert_equal 4, json_response['merchant_id']
   end
 
   test "should get individual item (case-insensitive) with find:description" do
     item = Item.create( name: "I-pod",
     description: "A nice thing that plays your music.",
-    unit_price: 10000,
+    unit_price: "10000.0",
     merchant_id: 4
     )
 
@@ -95,7 +95,7 @@ class Api::V1::ItemsControllerTest < ActionController::TestCase
     assert_response :success
     assert_equal "I-pod", json_response['name']
     assert_equal "A nice thing that plays your music.", json_response['description']
-    assert_equal 10000, json_response['unit_price']
+    assert_equal "10000.0", json_response['unit_price']
     assert_equal 4, json_response['merchant_id']
   end
 
@@ -105,7 +105,7 @@ class Api::V1::ItemsControllerTest < ActionController::TestCase
     assert_response :success
     assert_equal "I-pod - 4", json_response['name']
     assert_equal "A nice thing that plays your music. - 4", json_response['description']
-    assert_equal 10000, json_response['unit_price']
+    assert_equal "10000.0", json_response['unit_price']
     assert_equal 4, json_response['merchant_id']
   end
 
@@ -115,7 +115,7 @@ class Api::V1::ItemsControllerTest < ActionController::TestCase
     assert_response :success
     assert_equal "I-pod - 4", json_response['name']
     assert_equal "A nice thing that plays your music. - 4", json_response['description']
-    assert_equal 10000, json_response['unit_price']
+    assert_equal "10000.0", json_response['unit_price']
     assert_equal 4, json_response['merchant_id']
   end
 end

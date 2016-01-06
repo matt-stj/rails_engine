@@ -12,7 +12,7 @@ class Api::V1::MerchantsControllerTest < ActionController::TestCase
    get :index,  :format => :json
    assert_response :success
 
-   assert_equal "Turing", JSON.parse(response.body).first['name']
+   assert_equal "Turing", json_response.first['name']
   end
 
   test "should get merchants show page" do
@@ -21,7 +21,7 @@ class Api::V1::MerchantsControllerTest < ActionController::TestCase
 
    assert_response :success
 
-   assert_equal "Turing", JSON.parse(response.body)["name"]
+   assert_equal "Turing", json_response["name"]
   end
 
   test "should get single record from find:id" do
@@ -29,7 +29,7 @@ class Api::V1::MerchantsControllerTest < ActionController::TestCase
     get :find,  :format => :json, id: merchant.id
 
     assert_response :success
-    assert_equal "Turing", JSON.parse(response.body)["name"]
+    assert_equal "Turing", json_response["name"]
    end
 
    test "should get single record (case insensitive) from find:name" do
@@ -38,7 +38,7 @@ class Api::V1::MerchantsControllerTest < ActionController::TestCase
 
      assert_response :success
 
-     assert_equal "Turing", JSON.parse(response.body)["name"]
+     assert_equal "Turing", json_response["name"]
     end
 
     test "#find_all should get all records that match the query" do
@@ -47,7 +47,7 @@ class Api::V1::MerchantsControllerTest < ActionController::TestCase
 
       assert_response :success
 
-      assert_equal "Turing", JSON.parse(response.body)["name"]
+      assert_equal "Turing", json_response["name"]
      end
 
     test "can return a random record" do

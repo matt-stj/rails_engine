@@ -28,5 +28,5 @@ class MiniTest::Spec
   def teardown
     DatabaseCleaner.clean
   end
-  
+
 end

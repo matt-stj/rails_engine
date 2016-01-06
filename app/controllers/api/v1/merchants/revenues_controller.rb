@@ -3,7 +3,6 @@ class Api::V1::Merchants::RevenuesController < ApplicationController
 
   def show
     merchant = Merchant.find_by(id: params[:merchant_id])
-    binding.pry
     #where status = success
     totals = merchant.invoice_items.map do |invoice_item|
       invoice_total_price = invoice_item.quantity * invoice_item.item.unit_price.to_f
