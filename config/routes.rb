@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       resources :customers, only: [:index, :show ], defaults: {format: :json} do
         resources :invoices, module: "customers", only: [:index]
         resources :transactions, module: "customers", only: [:index]
+
          collection do
            get 'find'
            get 'find_all'
@@ -14,6 +15,11 @@ Rails.application.routes.draw do
       resources :merchants, only: [:index, :show], defaults: { format: :json } do
         resources :items, module: "merchants", only: [:index]
         resources :invoices, module: "merchants", only: [:index]
+
+        #Business Logic All Merchants
+
+        #Business Logic Sinlge Merchant
+        resource :revenue, module: "merchants", only: [:show]
 
         collection do
           get 'find'
