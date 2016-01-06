@@ -27,6 +27,7 @@ namespace :data do
     item_rows = CSV.readlines(items_path, headers: true, header_converters: :symbol).map(&:to_h)
 
     item_rows.each do |row|
+      row[:unit_price] = row[:unit_price].to_f / 100
       item = Item.create!(row)
       puts "created item: #{item.name}"
     end
@@ -59,6 +60,7 @@ namespace :data do
     invoice_item_rows = CSV.readlines(invoice_items_path, headers: true, header_converters: :symbol).map(&:to_h)
 
     invoice_item_rows.each do |row|
+      row[:unit_price] = row[:unit_price].to_f / 100
       invoice_item = InvoiceItem.create!(row)
       puts "created Invoice Item #: #{invoice_item.id}"
     end
