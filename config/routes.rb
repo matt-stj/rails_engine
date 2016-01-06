@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       end
 
       resources :transactions, only: [:index, :show], defaults: { format: :json } do
+        resource :invoice, module: "transactions", only: [:show]
         collection do
           get 'find'
           get 'find_all'
