@@ -32,15 +32,9 @@ class Api::V1::InvoiceItemsControllerTest < ActionController::TestCase
   end
 
   test "should get show page for invoice items" do
-    invoice_item = InvoiceItem.create( item_id: 2,
-    invoice_id: 4,
-    quantity: 1,
-    unit_price: 3
-    )
-
    get :show,  :format => :json, id: invoice_item.id
-   assert_response :success
 
+   assert_response :success
    assert_equal 2, json_response['item_id']
    assert_equal 4, json_response['invoice_id']
    assert_equal 1, json_response['quantity']
@@ -48,9 +42,7 @@ class Api::V1::InvoiceItemsControllerTest < ActionController::TestCase
   end
 
   test "should get individual invoice item with find" do
-
-
-   get :show,  :format => :json, id: invoice_item.id
+   get :find,  :format => :json, id: invoice_item.id
    assert_response :success
 
    assert_equal 2, json_response['item_id']
@@ -63,4 +55,12 @@ class Api::V1::InvoiceItemsControllerTest < ActionController::TestCase
      assert_response :success
      assert_equal 2, json_response.count
    end
+
+   test "#random returns a random record" do
+      get :random,  :format => :json, invoice_id: "4"
+
+      assert_response :success
+      assert json_response['item_id']
+      assert json_response['invoice_id']
+    end
 end
