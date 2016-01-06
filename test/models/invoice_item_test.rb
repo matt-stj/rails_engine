@@ -14,24 +14,4 @@ class InvoiceItemTest < ActiveSupport::TestCase
     assert_equal 5, invoice_item.quantity
     assert_equal 3, invoice_item.unit_price
   end
-
-  test "An Invoice Item belongs to an item" do
-    skip
-    invoice_item = InvoiceItem.new(
-                                    item_id: 1,
-                                    invoice_id: 1,
-                                    quantity: 5,
-                                    unit_price: 3
-    )
-  end
-
-  test "An Invoice Item belongs to an invoice" do
-    skip
-    invoice_item = InvoiceItem.new(
-                                    item_id: 1,
-                                    invoice_id: 1,
-                                    quantity: 5,
-                                    unit_price: 3
-    )
-  end
 end

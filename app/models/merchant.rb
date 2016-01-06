@@ -26,4 +26,15 @@ class Merchant < ActiveRecord::Base
     outstanding_customers.uniq
   end
 
+  def favorite_customer
+      customer_id = self.invoices
+                        .successful
+                        .unscope(:order)
+                        .group(:customer_id)
+                        .count
+                        .max_by { |key, value| value }.first
+
+      Customer.find(customer_id)
+  end
+
 end
