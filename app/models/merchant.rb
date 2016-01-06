@@ -6,4 +6,8 @@ class Merchant < ActiveRecord::Base
   has_many :invoice_items, through: :invoices
   has_many :transactions, through: :invoices
 
+  def revenue
+    { revenue: invoices.successful.joins(:invoice_items).sum("quantity * unit_price") }
+  end
+
 end
