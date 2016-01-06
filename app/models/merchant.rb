@@ -11,7 +11,11 @@ class Merchant < ActiveRecord::Base
   end
 
   def revenue_with_date(date)
-    { revenue: invoices.unscoped.successful.joins(:invoice_items).where(created_at: date).sum("quantity * unit_price") }
+    { revenue: invoices.successful.joins(:invoice_items).where(created_at: date).sum("quantity * unit_price") }
+  end
+
+  def self.total_revenue_for_date(date)
+    { total_revenue: Invoice.has_merchant.successful.joins(:invoice_items).where(created_at: date).sum("quantity * unit_price") }
   end
 
   def customers_with_pending_invoices

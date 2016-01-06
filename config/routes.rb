@@ -16,9 +16,8 @@ Rails.application.routes.draw do
         resources :items, module: "merchants", only: [:index]
         resources :invoices, module: "merchants", only: [:index]
 
-        #Business Logic All Merchants
 
-        #Business Logic Sinlge Merchant
+        #Business Logic Single Merchant
         resource :revenue, module: "merchants", only: [:show]
         resources :customers_with_pending_invoices, module: "merchants", only: [:index]
 
@@ -26,6 +25,8 @@ Rails.application.routes.draw do
           get 'find'
           get 'find_all'
           get 'random'
+          get '/most_revenue', to: 'merchants/most_revenue#index'
+          get '/revenue', to: 'merchants/total_revenue#show'
         end
 
       end

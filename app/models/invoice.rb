@@ -15,4 +15,8 @@ class Invoice < ActiveRecord::Base
     joins(:transactions).merge(Transaction.failed)
   end
 
+  def self.has_merchant
+    where.not(merchant_id: nil)
+  end
+
 end
