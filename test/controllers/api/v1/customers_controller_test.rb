@@ -62,7 +62,7 @@ class Api::V1::CustomersControllerTest < ActionController::TestCase
        assert_equal "Smith", json_response['last_name']
      end
 
-     test "#find_all should all records (case-insensitive) for query" do
+     test "#find_all should all records (case-insensitive) for query:name" do
        create_second_smith_record =
                                   Customer.create!( first_name: "Mike",
                                                     last_name: "Smith"
@@ -74,5 +74,13 @@ class Api::V1::CustomersControllerTest < ActionController::TestCase
         assert_equal "Smith", json_response.first['last_name']
         assert_equal "Smith", json_response.last['last_name']
       end
+
+      test "#random should return a random customer" do
+         get :random,  :format => :json
+
+         assert_response :success
+         assert json_response['first_name']
+         assert json_response['last_name']
+       end
 
 end
