@@ -11,4 +11,8 @@ class Invoice < ActiveRecord::Base
     joins(:transactions).merge(Transaction.success)
   end
 
+  def self.pending
+    joins(:transactions).merge(Transaction.failed)
+  end
+
 end

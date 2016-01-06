@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
         #Business Logic Sinlge Merchant
         resource :revenue, module: "merchants", only: [:show]
+        resources :customers_with_pending_invoices, module: "merchants", only: [:index]
 
         collection do
           get 'find'

@@ -7,4 +7,8 @@ class Transaction < ActiveRecord::Base
     self.where("result = 'success'")
   end
 
+  def self.failed
+    self.where("result = 'failed'")
+  end
+
 end
