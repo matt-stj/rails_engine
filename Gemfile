@@ -15,6 +15,7 @@ gem 'responders'
 group :development, :test do
   gem 'pry'
   gem 'simplecov', :require => false
+  gem 'database_cleaner'
 end
 
 

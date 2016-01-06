@@ -17,3 +17,16 @@ class ActionController::TestCase
     JSON.parse(response.body)
   end
 end
+
+DatabaseCleaner.strategy = :transaction
+
+class MiniTest::Spec
+  def setup
+    DatabaseCleaner.start
+  end
+
+  def teardown
+    DatabaseCleaner.clean
+  end
+  
+end

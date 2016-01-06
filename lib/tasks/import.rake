@@ -31,12 +31,17 @@ namespace :data do
       puts "created item: #{item.name}"
     end
 
-    #import Transactions
+    #Import Transactions
     transactions_path = "#{Rails.root}/lib/assets/transactions.csv"
     transaction_rows = CSV.readlines(transactions_path, headers: true, header_converters: :symbol).map(&:to_h)
 
     transaction_rows.each do |row|
-      transaction = Transaction.create!(row)
+      transaction = Transaction.create!(id: row[:id],
+                                        invoice_id: row[:invoice_id],
+                                        credit_card_number: row[:credit_card_number],
+                                        result: row[:result],
+                                        created_at: row[:created_at],
+                                        updated_at: row[:updated_at])
       puts "created transaction: #{transaction.id}"
     end
 
