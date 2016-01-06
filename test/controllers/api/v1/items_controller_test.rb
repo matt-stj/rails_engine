@@ -4,17 +4,15 @@ class Api::V1::ItemsControllerTest < ActionController::TestCase
   attr_reader :item
 
   def setup
-     5.times do |i|
-       Item.create( name: "I-pod - #{i}",
-                    description: "A nice thing that plays your music. - #{i}",
-                    unit_price: 10000,
-                    merchant_id: 4
-              )
-        @item = Item.first
-     end
+    5.times do |i|
+      Item.create( name: "I-pod - #{i}",
+      description: "A nice thing that plays your music. - #{i}",
+      unit_price: 10000,
+      merchant_id: 4
+      )
+      @item = Item.first
+    end
   end
-
-
 
   test "#index responds to json" do
     get :index, format: :json
@@ -117,5 +115,46 @@ class Api::V1::ItemsControllerTest < ActionController::TestCase
     assert_equal "A nice thing that plays your music. - 4", json_response['description']
     assert_equal "10000.0", json_response['unit_price']
     assert_equal 4, json_response['merchant_id']
+  end
+
+  test "should get single items with #find_all:item_id" do
+    get :find_all, :format => :json, id: item.id
+
+    assert_response :success
+
+    assert_equal 1, json_response.count
+    assert_equal 4, json_response.first['merchant_id']
+  end
+
+  test "should get all items with #find_all:merchant_id" do
+    get :find_all, :format => :json, merchant_id: 4
+
+    assert_response :success
+
+    assert_equal 5, json_response.count
+    assert_equal 4, json_response.first['merchant_id']
+  end
+
+  test "should get all items (case-insensitive) with #find_all:name" do
+    create_second_ipod_zero =
+    Item.create( name: "I-pod - 0",
+    description: "A nice thing that plays your music.",
+    unit_price: 10000,
+    merchant_id: 4
+    )
+
+    get :find_all, :format => :json, name: "I-pod - 0"
+
+    assert_response :success
+
+    assert_equal 2, json_response.count
+    assert_equal "I-pod - 0", json_response.first['name']
+  end
+
+  test "can return a random record" do
+    get :random,  :format => :json
+
+    assert_response :success
+    assert json_response['name']
   end
 end
