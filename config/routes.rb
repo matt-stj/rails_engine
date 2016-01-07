@@ -17,8 +17,6 @@ Rails.application.routes.draw do
         resources :items, module: "merchants", only: [:index]
         resources :invoices, module: "merchants", only: [:index]
 
-
-        #Business Logic Single Merchant
         resource :revenue, module: "merchants", only: [:show]
         resource :favorite_customer, module: "merchants", only: [:show]
         resources :customers_with_pending_invoices, module: "merchants", only: [:index]

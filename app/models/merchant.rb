@@ -37,4 +37,12 @@ class Merchant < ActiveRecord::Base
       Customer.find(customer_id)
   end
 
+  def self.most_revenue(quantity)
+    all.sort_by(&:merchant_revenue).reverse.first(quantity.to_i)
+  end
+
+  def merchant_revenue
+    invoices.successful.joins(:invoice_items).sum("quantity * unit_price")
+  end
+
 end
