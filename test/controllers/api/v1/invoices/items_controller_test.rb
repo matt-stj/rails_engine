@@ -7,6 +7,9 @@ class Api::V1::Invoices::ItemsControllerTest < ActionController::TestCase
                  merchant_id: 4,
                  status: "shipped"
            )
+    5.times do |i|
+      invoice.items.create(name: i)
+    end
 
     get :index, :format => :json, invoice_id: invoice.id
 
