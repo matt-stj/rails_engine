@@ -8,9 +8,11 @@ class Api::V1::InvoiceItems::InvoicesControllerTest < ActionController::TestCase
                  quantity: 1,
                  unit_price: 3
            )
+  invoice = Invoice.create(id: 4, status: "test invoice")
 
     get :show, :format => :json, invoice_item_id: invoice_item.id
 
     assert_response :success
+    assert_equal "test invoice", json_response['status']
   end
 end
