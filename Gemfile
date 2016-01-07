@@ -16,6 +16,7 @@ group :development, :test do
   gem 'pry'
   gem 'simplecov', :require => false
   gem 'database_cleaner'
+  gem 'shoulda'
 end
 
 

@@ -19,11 +19,10 @@ class Api::V1::Merchants::RevenuesControllerTest < ActionController::TestCase
       merchant_id: merchant.id,
       status: "shipped"
       )
-    end
 
     invoice_items = 3.times do |i|
-        InvoiceItem.create( item_id: Item.find(Item.first.id),
-          invoice_id: invoices[i],
+        InvoiceItem.create( item_id: Item.first.id,
+          invoice_id: invoice.id,
           quantity: 1,
           unit_price: 10
           )
@@ -39,9 +38,16 @@ class Api::V1::Merchants::RevenuesControllerTest < ActionController::TestCase
   end
 
   test "#show returns the total transactional revenue for given merchant" do
-      get :show, :format => :json, merchant_id: merchant.id
+      get :show, :format => :json, merchant_id: Merchant.first
 
       assert_response :success
-      binding.pry
+      assert_equal ({"revenue" => "30.0"}), json_response
+  end
+
+  test "#show with a date parameter returns the total transactional revenue for given merchant in a certain day" do
+      get :show, :format => :json, merchant_id: Merchant.first, date: Transaction.first.created_at.strftime("%m-%d-%y %l:%M:%S")
+
+      assert_response :success
+      assert_equal ({"revenue" => "0.0"}), json_response
   end
 end

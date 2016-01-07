@@ -1,13 +1,13 @@
 # # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 #
 # one:
-#   name: Item Name 1
-#   description: Item Desc 1
+#   item_id: 1
+#   invoice_id: 1
+#   quantity: 2
 #   unit_price: 9.99
-#   merchant_id: 1
 #
 # two:
-#   name: Item Name 2
-#   description: Item Desc 2
+#   item_id: 2
+#   invoice_id: 2
+#   quantity: 4
 #   unit_price: 99.99
-#   merchant_id: 2

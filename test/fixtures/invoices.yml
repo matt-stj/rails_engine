@@ -1,0 +1,11 @@
+# # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+#
+# one:
+#   customer_id: Customer.first.id
+#   merchant_id: Merchant.first.id
+#   status: shipped
+#
+# two:
+#   customer_id: 2
+#   merchant_id: 2
+#   status: shipped
