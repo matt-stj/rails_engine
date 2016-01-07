@@ -14,5 +14,6 @@ class Api::V1::Invoices::ItemsControllerTest < ActionController::TestCase
     get :index, :format => :json, invoice_id: invoice.id
 
     assert_response :success
+    assert_equal 5, json_response.count
   end
 end
