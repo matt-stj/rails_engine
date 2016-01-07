@@ -14,7 +14,11 @@ gem 'responders'
 
 group :development, :test do
   gem 'pry'
+  gem 'simplecov', :require => false
+  gem 'database_cleaner'
+  gem 'shoulda'
 end
+
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views

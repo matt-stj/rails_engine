@@ -9,4 +9,7 @@ class CustomerTest < ActiveSupport::TestCase
     assert_equal "Matt", customer.first_name
     assert_equal "Smith", customer.last_name
   end
+
+  should have_many(:invoices)
+  should have_many(:transactions)
 end
