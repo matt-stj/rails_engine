@@ -15,8 +15,7 @@ class Api::V1::Merchants::RevenuesControllerTest < ActionController::TestCase
         )
       end
 
-    invoices =  3.times do |i|
-      Invoice.create!( customer_id: customer.id,
+    invoice = Invoice.create!( customer_id: customer.id,
       merchant_id: merchant.id,
       status: "shipped"
       )
@@ -30,11 +29,9 @@ class Api::V1::Merchants::RevenuesControllerTest < ActionController::TestCase
           )
     end
 
-    transactions = 3.times do |i|
-      Transaction.create( invoice_id: Invoice.first.id,
-        credit_card_number: "1234567#{i}",
+    transaction =Transaction.create( invoice_id: Invoice.first.id,
+        credit_card_number: "1234567",
         result: "success")
-    end
 
     failed_transaction = Transaction.create(invoice_id: Invoice.first.id,
       credit_card_number: "1234567",
