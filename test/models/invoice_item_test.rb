@@ -14,4 +14,7 @@ class InvoiceItemTest < ActiveSupport::TestCase
     assert_equal 5, invoice_item.quantity
     assert_equal 3, invoice_item.unit_price
   end
+
+  should belong_to(:invoice)
+  should belong_to(:item)
 end
