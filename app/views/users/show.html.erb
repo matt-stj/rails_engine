@@ -1,7 +1,28 @@
-<h1>Admin Dash</h1>
+<div class="ui container">
+  <h1>Admin Dash</h1>
 
-<div>
-  Top Merchants:
-  <ol id="top-merchants">
-  </ol>
+
+  <div class="ui card">
+    <div class="content">
+      <div class="header">Top Merchants</div>
+      <div class="description">
+        <table class="ui large table">
+        <thead>
+          <tr>
+            <th>Merchant</th>
+            <th class="merchant-revenue-column" style="display: none;">Revenue</th>
+          </tr>
+        </thead>
+        <tbody id="top-merchants">
+          <!-- JS Render Merchants -->
+        </tbody>
+      </table>
+      </div>
+    </div>
+    <div class="extra content">
+      <button class="ui button green" id="view-merchants">View Top Merchants</button>
+    </div>
+  </div>
+
+
 </div>
