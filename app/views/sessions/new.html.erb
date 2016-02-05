@@ -1,0 +1,13 @@
+<div class="center-box">
+  <h4>Login:</h4>
+
+  <div class="login_form">
+    <%= form_for(:session, url: login_path) do |f| %>
+      <%= f.label :username %>
+      <%= f.text_field :username %>
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+      <%= f.submit "Login", class:"btn" %>
+    <% end %>
+  </div>
+</div>

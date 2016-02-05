@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+
+  get "/login", to: "sessions#new"
+  post "/login", to: "sessions#create"
+  get "/logout", to: "sessions#delete"
+
+  resources :users, only: [:show]
+
   namespace :api do
   namespace :v1 do
       resources :customers, only: [:index, :show ], defaults: {format: :json} do
