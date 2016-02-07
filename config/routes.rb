@@ -56,6 +56,7 @@ Rails.application.routes.draw do
           get 'find'
           get 'find_all'
           get 'random'
+          get '/most_revenue', to: 'items/most_item_revenue#index'
         end
       end
 
