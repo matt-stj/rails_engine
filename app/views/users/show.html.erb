@@ -1,0 +1,75 @@
+<div class="ui container">
+  <br>
+  <h1 class="ui header">Admin Dash</h1>
+
+    <div class="ui fluid card">
+      <div class="content">
+        <div class="header">Query Statistics</div>
+        <div class="description">
+          <table class="ui large table merchants-table">
+          <thead>
+            <tr>
+              <th>EndPoint</th>
+              <th>Active Record Call</th>
+              <th>Time (ms)</th>
+            </tr>
+          </thead>
+          <tbody id="processes">
+            <!-- JS Render Processes -->
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="ui six column centered grid">
+      <div class="four column centered row">
+        <div class="ui cards">
+          <div class="ui centered card">
+            <div class="content">
+              <div class="header">Top Merchants</div>
+              <div class="description">
+                <table class="ui large table merchants-table">
+                <thead>
+                  <tr>
+                    <th>Merchant</th>
+                    <th class="merchant-revenue-column" style="display: none; white-space:nowrap;">Total Revenue</th>
+                  </tr>
+                </thead>
+                <tbody id="top-merchants">
+                  <!-- JS Render Merchants -->
+                </tbody>
+              </table>
+              </div>
+            </div>
+            <div class="extra content">
+              <button class="ui button green" id="view-merchants">View Top Merchants</button>
+            </div>
+          </div>
+          <!-- Items -->
+          <div class="ui card" style="display: none">
+            <div class="content">
+              <div class="header">Best Selling Items</div>
+              <div class="description">
+                <table class="ui large table items-table">
+                <thead>
+                  <tr>
+                    <th>Items</th>
+                    <th class="item-revenue-column" style="display: none;">Revenue</th>
+                  </tr>
+                </thead>
+                <tbody id="top-items">
+                  <!-- JS Render Items -->
+                </tbody>
+              </table>
+              </div>
+            </div>
+            <div class="extra content">
+              <button class="ui button green" id="view-items">View Items</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>
