@@ -1,13 +1,29 @@
-<div class="center-box">
-  <h4>Login:</h4>
-
-  <div class="login_form">
-    <%= form_for(:session, url: login_path) do |f| %>
-      <%= f.label :username %>
-      <%= f.text_field :username %>
-      <%= f.label :password %>
-      <%= f.password_field :password %>
-      <%= f.submit "Login", class:"btn" %>
-    <% end %>
+<div class="ui container" style="padding-top:150px">
+  <div class="ui two column centered grid">
+    <div class="column">
+      <div class="ui middle aligned center aligned grid">
+        <div class="column">
+          <h2 class="ui blue image header">
+            <div class="content blue">
+              Log-in
+            </div>
+          </h2>
+          <div class="ui large form">
+            <div class="ui stacked segment">
+              <%= form_for(:session, url: login_path) do |f| %>
+              <div class="field">
+                <%= f.label :username %>
+                <%= f.text_field :username, value: "admin", class: "input" %>
+              </div>
+              <div class="field">
+                <%= f.label :password %>
+                <%= f.password_field :password, value: "password", class: "input" %>
+              </div>
+              <%= f.submit "Login", class:"ui fluid large blue submit button" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
