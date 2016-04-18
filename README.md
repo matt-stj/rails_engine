@@ -1,6 +1,6 @@
 # RailsEngine
 
-A Rails project to act as a simulation of an online merchant database with vendors, items, invoices, customers, and transactions. I built 25+ JSON API endpoints to display information from the database and built Active Record + SQL queries to provide a layer of business intelligence for each endpoint.  
+A Rails project to act as a simulation of an online merchant database with vendors, items, invoices, customers, and transactions. 25+ JSON API endpoints built on Active Record + SQL queries to serve up a layer of business intelligence for each endpoint.  
 
 [Sample App (limited functionality)](https://rails-engine-demo.herokuapp.com/)
 
